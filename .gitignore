@@ -1,0 +1,3 @@
+.vscode/settings.json
+build/contracts/token.json
+build/contracts/Migrations.json
