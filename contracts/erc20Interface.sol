@@ -6,7 +6,7 @@ pragma solidity >=0.4.22 <0.9.0;
 
 
 contract ERC20Interface {
-    uint256 public totSupply;
+    //uint256 public totSupply;
 
     // Optional
     // function decimals() public view returns (uint8);
