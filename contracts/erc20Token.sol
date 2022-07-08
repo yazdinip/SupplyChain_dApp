@@ -28,5 +28,20 @@ contract ERC20Token is ERC20Interface{
         decimals = _decimalPoint;
     }
 
+    function tranfer(address _to, uint256 _value) public returns (bool success) {
+        if (_to == address(0)) {
+            return false;
+        }
+        if (_value == 0) {
+            return false;
+        }
+        if (_value > balances[msg.sender]) {
+            return false;
+        }
+        balances[msg.sender] -= _value;
+        balances[_to] += _value;
+        Transfer(msg.sender, _to, _value);
+        return true;
+    }
 }
 
