@@ -64,5 +64,9 @@ contract ERC20Token is ERC20Interface{
         Transfer(_from, _to, _value);
         return true;
     }
+
+    function balanceOf(address _owner)public view returns (uint256 remaining){
+        return balances[_owner];
+    }
 }
 
