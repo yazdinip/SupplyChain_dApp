@@ -74,5 +74,13 @@ contract ERC20Token is ERC20Interface{
         Approval(msg.sender, _spender, _value);
         return true;
     }
+
+    function allowance(address _owner, address _spender)public view returns(uint256 remaining){
+        return allowed[_owner][_spender];
+    }
+
+    function totalSupply()public view returns (uint256 totSupp){
+        return totalSupply;
+    }
 }
 
