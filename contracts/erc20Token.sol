@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity >=0.4.17;
 
 import "./erc20Interface.sol";
 
-contract ERC20Token is ERC20Interface{
+contract ERC20Token is IERC20{
     
     uint256 constant MAX_UINT256 = 2**256 - 1;
     //token balances for each address
@@ -30,7 +30,7 @@ contract ERC20Token is ERC20Interface{
         decimals = _decimalPoint;               //initialize decimals to _decimalPoint
     }
 
-    function tranfer(address _to, uint256 _value) public returns (bool success) {
+    function transfer(address _to, uint256 _value) public returns (bool success) {
         //Check to see if the receipient is not the owner of the token
         if (_to == address(0)) {
             return false;
@@ -43,7 +43,7 @@ contract ERC20Token is ERC20Interface{
         }
         balances[msg.sender] -= _value;
         balances[_to] += _value;
-        Transfer(msg.sender, _to, _value);
+        emit Transfer(msg.sender, _to, _value);
         return true;
     }
 
@@ -61,7 +61,7 @@ contract ERC20Token is ERC20Interface{
         balances[_from] -= _value;
         balances[_to] += _value;
         allowed[_from][msg.sender] -= _value;
-        Transfer(_from, _to, _value);
+        emit Transfer(_from, _to, _value);
         return true;
     }
 
@@ -71,7 +71,7 @@ contract ERC20Token is ERC20Interface{
 
     function approve(address _spender, uint256 _value)public returns (bool success){
         allowed[msg.sender][_spender] = _value;
-        Approval(msg.sender, _spender, _value);
+        emit Approval(msg.sender, _spender, _value);
         return true;
     }
 
@@ -80,7 +80,7 @@ contract ERC20Token is ERC20Interface{
     }
 
     function totalSupply()public view returns (uint256 totSupp){
-        return totalSupply;
+        return totSupply;
     }
 }
 
