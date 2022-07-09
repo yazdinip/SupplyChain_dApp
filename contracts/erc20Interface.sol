@@ -2,7 +2,7 @@
 // ERC Token Standard #20 Interface
 // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md
 
-pragma solidity >=0.4.17;
+pragma solidity >=0.8.0;
 
 
 interface IERC20 {

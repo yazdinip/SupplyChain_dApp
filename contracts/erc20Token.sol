@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.4.17;
+pragma solidity >=0.8.0;
 
 import "./erc20Interface.sol";
 
@@ -22,7 +22,7 @@ contract ERC20Token is IERC20{
         string memory _tokenSymbol,
         string memory _tokenName,
         uint8 _decimalPoint
-    ) public {
+    ) {
         balances[msg.sender] = _initialAmount;  //initialize sender's balance to _initialAmount
         totSupply = _initialAmount;             //initialize total supply to _initialAmount
         symbol = _tokenSymbol;                  //initialize symbol to _tokenSymbol
