@@ -1,2 +1,2 @@
 # SupplydApp
-Basic Supply Chain application implemented using Blockchain 
+a decentralized Supply Chain application built on Ethereum
