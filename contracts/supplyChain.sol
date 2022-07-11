@@ -29,4 +29,9 @@ contract supplyChain{
         uint32 trxTimeStamp;
         address productOwner;
     }
+
+    mapping(uint32 => participant) public participants;
+    mapping(uint32 => product) public products;
+
+    event TransferOwnership(uint32 prdouctId);
 }
