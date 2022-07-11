@@ -22,4 +22,11 @@ contract supplyChain{
         uint32 cost;
         uint32 mfgTimeStamp;
     }
+
+    struct ownership{
+        uint32 productId;
+        uint32 ownerId;
+        uint32 trxTimeStamp;
+        address productOwner;
+    }
 }
