@@ -35,6 +35,19 @@ contract supplyChain{
 
     event TransferOwnership(uint32 prdouctId);
 
+    modifier onlyOwner(uint32 _productId) {
+        if(products[_productId].productOwner != msg.sender) {
+            throw;
+        }
+        _;
+    }
+
+    modifier onlyManufacturer{
+        if(!participants[msg.sender].participantType == "Manufacturer"){
+            throw;
+        }
+    }
+
     function addParticipant(string memory _username, 
                             string memory _password, 
                             string memory _participantType, 
