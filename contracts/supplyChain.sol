@@ -36,16 +36,8 @@ contract supplyChain{
     event TransferOwnership(uint32 prdouctId);
 
     modifier onlyOwner(uint32 _productId) {
-        if(products[_productId].productOwner != msg.sender) {
-            throw;
-        }
+        require(products[_productId].productOwner != msg.sender);
         _;
-    }
-
-    modifier onlyManufacturer{
-        if(!participants[msg.sender].participantType == "Manufacturer"){
-            throw;
-        }
     }
 
     function addParticipant(string memory _username, 
@@ -67,4 +59,5 @@ contract supplyChain{
                 participants[_participant_id].participantType);
 
     
+    }
 }
