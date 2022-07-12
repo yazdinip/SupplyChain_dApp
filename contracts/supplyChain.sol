@@ -35,19 +35,23 @@ contract supplyChain{
 
     event TransferOwnership(uint32 prdouctId);
 
-    function addParticipant(string memory _name, string memory _pass, address _pAdd, string memory _pType) public returns (uint32){
-        uint32 userId = participant_id++;
-        participants[userId].userName = _name;
-        participants[userId].password = _pass;
-        participants[userId].participantAddress = _pAdd;
-        participants[userId].participantType = _pType;
+    function addParticipant(string memory _username, 
+                            string memory _password, 
+                            string memory _participantType, 
+                            address _participantAddress) public returns (uint32){
+                                uint32 tempID = participant_id++;
+                                participants[tempID].userName = _username;
+                                participants[tempID].password = _password;
+                                participants[tempID].participantType = _participantType;
+                                participants[tempID].participantAddress = _participantAddress;
 
-        return userId;
-    }
+                                return tempID;
+                            }
 
     function getParticipant(uint32 _participant_id) public view returns (string memory,address,string memory) {
         return (participants[_participant_id].userName,
                 participants[_participant_id].participantAddress,
                 participants[_participant_id].participantType);
-    }
+
+    
 }
