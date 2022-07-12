@@ -45,5 +45,9 @@ contract supplyChain{
         return userId;
     }
 
-    
+    function getParticipant(uint32 _participant_id) public view returns (string memory,address,string memory) {
+        return (participants[_participant_id].userName,
+                participants[_participant_id].participantAddress,
+                participants[_participant_id].participantType);
+    }
 }
