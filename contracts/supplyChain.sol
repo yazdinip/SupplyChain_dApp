@@ -111,5 +111,15 @@ contract supplyChain{
         return (true);
     }
 
+    function getProvenance(uint32 _productId) external view returns (uint32[] memory) {
+        return productTrack[_productId];
+    }
+
+    function getOwnership(uint32 _tempId)  public view returns (uint32, uint32, address, uint32) {
+
+        ownership memory tempOwner = ownerships[_tempId];
+
+         return (tempOwner.productId, tempOwner.ownerId, tempOwner.productOwner, tempOwner.trxTimeStamp);
+    }
 
 }
