@@ -73,7 +73,7 @@ contract supplyChain{
         products[productId].serialNumber = _serialNumber;
         products[productId].productOwner = participants[_ownerId].participantAddress;
         products[productId].cost = _productCost;
-        products[productId].mfgTimeStamp = block.timestamp;
+        products[productId].mfgTimeStamp = uint32(block.timestamp);
         return productId;
     }
 }
