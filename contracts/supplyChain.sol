@@ -122,4 +122,15 @@ contract supplyChain{
          return (tempOwner.productId, tempOwner.ownerId, tempOwner.productOwner, tempOwner.trxTimeStamp);
     }
 
+    function authenticateParticipant(string memory _username, string memory _password) public view returns (bool) {
+        for(uint32 i = 0; i < participant_id; i++) {
+            bool usernameMatch = keccak256(abi.encodePacked(participants[i].userName)) == keccak256(abi.encodePacked(_username));
+            bool passwordMatch = keccak256(abi.encodePacked(participants[i].password)) == keccak256(abi.encodePacked(_password));
+            if(usernameMatch && passwordMatch) {
+                return (true);
+            }
+        }
+        return (false);
+    }
+
 }
