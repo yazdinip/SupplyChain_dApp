@@ -40,6 +40,11 @@ contract supplyChain{
         _;
     }
 
+    modifier onlyManufacturer(uint32 _ownerId) {
+        require(keccak256(abi.encodePacked(participants[_ownerId].participantType)) == keccak256("Manufacturer"), "Only Manufacturer can add a product");
+        _;
+    }
+
     function addParticipant(string memory _username, 
                             string memory _password, 
                             string memory _participantType, 
@@ -65,8 +70,7 @@ contract supplyChain{
                         string memory _modelNumber,
                         string memory _partNumber,
                         string memory _serialNumber,
-                        uint32 _productCost) public returns (uint32) {
-        require(keccak256(abi.encodePacked(participants[_ownerId].participantType)) == keccak256("Manufacturer"), "Only Manufacturer can add a product");
+                        uint32 _productCost) onlyManufacturer(_ownerId) public returns (uint32) {
         uint32 productId = product_id++;
         products[productId].modelNumber = _modelNumber;
         products[productId].partNumber = _partNumber;
