@@ -60,6 +60,13 @@ contract supplyChain{
         _;
     }
 
+    modifier onlyAuthenticated(uint32 _userId, string memory _username, string memory _password){
+        bool usernameMatch = keccak256(abi.encodePacked(participants[_userId].userName)) == keccak256(abi.encodePacked(_username));
+        bool passwordMatch = keccak256(abi.encodePacked(participants[_userId].password)) == keccak256(abi.encodePacked(_password));
+        require(usernameMatch && passwordMatch, "The username or password is incorrect.");
+        _;
+    }
+
     function addParticipant(string memory _username, 
                             string memory _password, 
                             string memory _participantType, 
@@ -122,15 +129,15 @@ contract supplyChain{
          return (tempOwner.productId, tempOwner.ownerId, tempOwner.productOwner, tempOwner.trxTimeStamp);
     }
 
-    function authenticateParticipant(string memory _username, string memory _password) public view returns (bool) {
-        for(uint32 i = 0; i < participant_id; i++) {
-            bool usernameMatch = keccak256(abi.encodePacked(participants[i].userName)) == keccak256(abi.encodePacked(_username));
-            bool passwordMatch = keccak256(abi.encodePacked(participants[i].password)) == keccak256(abi.encodePacked(_password));
-            if(usernameMatch && passwordMatch) {
-                return (true);
-            }
-        }
-        return (false);
-    }
+    // function authenticateParticipant(string memory _username, string memory _password) public view returns (bool) {
+    //     for(uint32 i = 0; i < participant_id; i++) {
+    //         bool usernameMatch = keccak256(abi.encodePacked(participants[i].userName)) == keccak256(abi.encodePacked(_username));
+    //         bool passwordMatch = keccak256(abi.encodePacked(participants[i].password)) == keccak256(abi.encodePacked(_password));
+    //         if(usernameMatch && passwordMatch) {
+    //             return (true);
+    //         }
+    //     }
+    //     return (false);
+    // }
 
 }
