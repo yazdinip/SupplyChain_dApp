@@ -32,6 +32,8 @@ contract supplyChain{
 
     mapping(uint32 => participant) public participants;
     mapping(uint32 => product) public products;
+    mapping(uint32 => ownership) public ownerships; // ownerships by ownership ID (owner_id)
+    mapping(uint32 => uint32[]) public productTrack;  // ownerships by Product ID (product_id) / Movement track for a product
 
     event TransferOwnership(uint32 prdouctId);
 
