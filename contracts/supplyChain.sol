@@ -60,4 +60,20 @@ contract supplyChain{
 
     
     }
+
+    function addProduct(uint32 _ownerId,
+                        string memory _modelNumber,
+                        string memory _partNumber,
+                        string memory _serialNumber,
+                        uint32 _productCost) public returns (uint32) {
+        require(keccak256(abi.encodePacked(participants[_ownerId].participantType)) == keccak256("Manufacturer"), "Only Manufacturer can add a product");
+        uint32 productId = product_id++;
+        products[productId].modelNumber = _modelNumber;
+        products[productId].partNumber = _partNumber;
+        products[productId].serialNumber = _serialNumber;
+        products[productId].productOwner = participants[_ownerId].participantAddress;
+        products[productId].cost = _productCost;
+        products[productId].mfgTimeStamp = block.timestamp;
+        return productId;
+    }
 }
