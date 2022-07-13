@@ -96,11 +96,19 @@ contract supplyChain{
         return productId;
     }
 
-
-
-    function newOwner(uint32 _oldOwner, uint32 _newOwner, uint32 _productId) onlyOwner(_productId) onlyForward(_oldOwner, _newOwner) public returns (uint32) {
+    function newOwner(uint32 _oldOwner, uint32 _newOwner, uint32 _productId) onlyOwner(_productId) onlyForward(_oldOwner, _newOwner) public returns (bool) {
         uint32 ownerId = owner_id++;
-        return ownerId;
+        address p2Address = participants[_newOwner].participantAddress;
+
+        ownerships[ownerId].productId = _productId;
+        ownerships[ownerId].productOwner = p2Address;
+        ownerships[ownerId].ownerId = _newOwner;
+        ownerships[ownerId].trxTimeStamp = uint32(block.timestamp);
+        products[_productId].productOwner = p2Address;
+        productTrack[_productId].push(ownerId);
+        emit TransferOwnership(_productId);
+
+        return (true);
     }
 
 
