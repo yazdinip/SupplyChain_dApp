@@ -47,17 +47,30 @@ contract supplyChain{
         _;
     }
 
+    modifier onlyForward(uint32 _oldOwner, uint32 _newOwner){
+        participant memory tempOldOwner = participants[_oldOwner];
+        participant memory tempNewOwner = participants[_newOwner];
+        bool boolManufacturer = keccak256(abi.encodePacked(tempOldOwner.participantType)) == keccak256("Manufacturer")
+            && keccak256(abi.encodePacked(tempNewOwner.participantType))==keccak256("Supplier");
+        bool boolSupplyer = keccak256(abi.encodePacked(tempOldOwner.participantType)) == keccak256("Supplier") 
+            && keccak256(abi.encodePacked(tempNewOwner.participantType))==keccak256("Supplier");
+        bool boolConsumer = keccak256(abi.encodePacked(tempOldOwner.participantType)) == keccak256("Supplier") 
+            && keccak256(abi.encodePacked(tempNewOwner.participantType))==keccak256("Consumer");
+        require(boolManufacturer || boolSupplyer || boolConsumer, "The product can only be transferred from Manufacturer to Supplier or Supplier to Consumer or Supplier to Supplier.");
+        _;
+    }
+
     function addParticipant(string memory _username, 
                             string memory _password, 
                             string memory _participantType, 
                             address _participantAddress) public returns (uint32){
-                                uint32 tempID = participant_id++;
-                                participants[tempID].userName = _username;
-                                participants[tempID].password = _password;
-                                participants[tempID].participantType = _participantType;
-                                participants[tempID].participantAddress = _participantAddress;
+                                uint32 participantId = participant_id++;
+                                participants[participantId].userName = _username;
+                                participants[participantId].password = _password;
+                                participants[participantId].participantType = _participantType;
+                                participants[participantId].participantAddress = _participantAddress;
 
-                                return tempID;
+                                return participantId;
                             }
 
     function getParticipant(uint32 _participant_id) public view returns (string memory,address,string memory) {
@@ -82,4 +95,13 @@ contract supplyChain{
         products[productId].mfgTimeStamp = uint32(block.timestamp);
         return productId;
     }
+
+
+
+    function newOwner(uint32 _oldOwner, uint32 _newOwner, uint32 _productId) onlyOwner(_productId) onlyForward(_oldOwner, _newOwner) public returns (uint32) {
+        uint32 ownerId = owner_id++;
+        return ownerId;
+    }
+
+
 }
