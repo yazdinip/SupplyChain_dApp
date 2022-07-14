@@ -19,9 +19,9 @@ contract ERC20Token is IERC20{
 
     constructor(
         uint256 _initialAmount,
-        string memory _tokenSymbol,
         string memory _tokenName,
-        uint8 _decimalPoint
+        uint8 _decimalPoint,
+        string memory _tokenSymbol
     ) {
         balances[msg.sender] = _initialAmount;  //initialize sender's balance to _initialAmount
         totSupply = _initialAmount;             //initialize total supply to _initialAmount
