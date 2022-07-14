@@ -4,3 +4,4 @@ build/contracts/Migrations.json
 truffle-config.js
 build/contracts/ERC20Token.json
 build/contracts/IERC20.json
+build/contracts/supplyChain.json
