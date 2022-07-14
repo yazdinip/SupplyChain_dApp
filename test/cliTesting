@@ -10,7 +10,7 @@
 // supplyChain.deployed().then(function(instance) {return instance });
 
 // // Create 3 manufacturer participants (A, B, C)
-// supplyChain.deployed().then(function(instance) {return instance.addParticipant("A","passA","0x8858d98eC700363a2A1D9308c7312653d186f9B0","Manufacturer") });
+// supplyChain.deployed().then(function(instance) {return instance.addParticipant("A","passA","0xB35e82d8f182aA313c95120ef1305d46bdE08402","Manufacturer") });
 // supplyChain.deployed().then(function(instance) {return instance.addParticipant("B","passB","0xd295d0BF5Fb583219CB7b8AB1a3F3f5E218D0442","Supplier") });
 // supplyChain.deployed().then(function(instance) {return instance.addParticipant("C","passC","0x9c4c246bca58D3b821bFFdbdB88D60E8E2727E84","Consumer") });
 
