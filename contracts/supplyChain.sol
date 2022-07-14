@@ -75,8 +75,8 @@ contract supplyChain{
                                 uint32 participantId = participant_id++;
                                 participants[participantId].userName = _username;
                                 participants[participantId].password = _password;
-                                participants[participantId].participantType = _participantType;
-                                participants[participantId].participantAddress = _participantAddress;
+                                participants[participantId].participantType = _participantAddress;
+                                participants[participantId].participantAddress = _participantType;
 
                                 return participantId;
                             }
