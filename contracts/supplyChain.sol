@@ -10,8 +10,8 @@ contract supplyChain{
     struct participant{
         string userName;
         string password;
-        string participantType;
         address participantAddress;
+        string participantType;
     }
     
     struct product{
