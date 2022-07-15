@@ -1,4 +1,4 @@
-const erc20Token = artifacts.require("erc20Token");
+const erc20Token = artifacts.require("./erc20Token.sol");
 
 /*
  * uncomment accounts to access the test accounts made available by the
