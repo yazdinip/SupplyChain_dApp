@@ -1,2 +1,2 @@
 # SupplydApp
-Sample supply chain application built on Ethereum
+Simple supply chain application built on Ethereum
